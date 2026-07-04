@@ -1,0 +1,12 @@
+.next
+node_modules
+.pnpm-store
+/assets/
+/favicon.svg
+/public/assets/*.png
+.env
+.env.local
+out
+dist
+*.log
+tsconfig.tsbuildinfo

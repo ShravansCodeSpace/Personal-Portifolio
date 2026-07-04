@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #185FA5;
+  --secondary: #0F6E56;
+  --background: #F7F7F5;
+  --text: #1A1A1A;
+  --text-secondary: #6B6B68;
+  --border: #DEDDD7;
+}
+
+.dark {
+  --primary: #85B7EB;
+  --secondary: #5DCAA5;
+  --background: #111214;
+  --text: #EDEDED;
+  --text-secondary: #A6A49B;
+  --border: #3A3A38;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, transparent), transparent 34rem),
+    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--secondary) 12%, transparent), transparent 28rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-block {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .eyebrow {
+    @apply mb-3 text-[13px] font-semibold uppercase tracking-normal;
+    color: var(--secondary);
+  }
+
+  .heading-xl {
+    @apply text-4xl font-semibold leading-tight tracking-normal sm:text-[44px];
+  }
+
+  .heading-lg {
+    @apply text-[28px] font-semibold leading-tight tracking-normal sm:text-[30px];
+  }
+
+  .heading-md {
+    @apply text-xl font-medium leading-snug tracking-normal;
+  }
+
+  .muted {
+    color: var(--text-secondary);
+  }
+
+  .card {
+    @apply rounded-lg border p-5 transition duration-200 ease-out;
+    background: color-mix(in srgb, var(--background) 86%, white 14%);
+    border-color: var(--border);
+  }
+
+  .dark .card {
+    background: color-mix(in srgb, var(--background) 88%, white 8%);
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-card dark:hover:shadow-cardDark;
+  }
+
+  .button {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition duration-150 ease-out active:scale-[0.98];
+    border-color: var(--border);
+  }
+
+  .button-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--background);
+  }
+
+  .button-secondary {
+    color: var(--primary);
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium transition duration-150 ease-out hover:-translate-y-0.5;
+    border-color: var(--border);
+    color: var(--secondary);
+  }
+
+  .field {
+    @apply min-h-11 rounded-lg border bg-transparent px-3 py-2 outline-none transition;
+    border-color: var(--border);
+  }
+
+  .field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent);
+  }
+}
