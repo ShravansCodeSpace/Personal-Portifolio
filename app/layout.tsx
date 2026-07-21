@@ -1,33 +1,49 @@
 import type { Metadata } from "next";
+import { Geist_Mono, Inter, Kanit } from "next/font/google";
 import "./globals.css";
-import { profile } from "@/lib/content";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+const kanit = Kanit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-kanit",
+  display: "swap"
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap"
+});
+
+const geistLabel = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-geist-label",
+  display: "swap"
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: `${profile.name} | ${profile.title}`,
-  description: profile.summary,
-  authors: [{ name: profile.name }],
+  title: "Shravankumar Chinnaram | Senior SAP Commerce Cloud Developer",
+  description:
+    "Portfolio for Shravankumar Chinnaram, a Senior SAP Commerce Cloud Developer focused on SAP Commerce modules, enterprise integrations, production rollouts, and AI-assisted delivery.",
   openGraph: {
-    title: `${profile.name} | SAP Commerce Cloud Specialist`,
-    description: profile.summary,
-    type: "website",
-    url: siteUrl,
-    images: [{ url: "/assets/commerce-cloud-hero.webp", width: 1200, height: 675 }]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${profile.name} | SAP Commerce Cloud Specialist`,
-    description: profile.summary,
-    images: ["/assets/commerce-cloud-hero.webp"]
+    title: "Shravankumar Chinnaram | Senior SAP Commerce Cloud Developer",
+    description:
+      "SAP Commerce Cloud specialist with enterprise module ownership, production rollouts, integrations, and AI-assisted delivery workflows.",
+    type: "website"
   }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark">
-      <body>{children}</body>
+      <body className={`${kanit.variable} ${inter.variable} ${geistLabel.variable} font-body`}>
+        {children}
+      </body>
     </html>
   );
 }

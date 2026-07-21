@@ -1,0 +1,91 @@
+Shravan Chinnaram
+Senior SAP Commerce Developer
+
+Contact
+Email: chshravankumar97@gmail.com
+LinkedIn: https://www.linkedin.com/in/shravankumar-chinnaram-374736170/
+
+Professional Summary
+Senior SAP Commerce Developer and Commerce Cloud Specialist with 7 years of industry experience, including 6 years of focused expertise in SAP Commerce Cloud across Hybris 2211, 2205, and 1905. Proven ability to architect, build, and deliver end-to-end e-commerce solutions across B2B and B2C domains. Acted as technical point of contact for a 7-member team and independently owned 2 live production rollouts from inception to go-live.
+
+Core Skills
+SAP Commerce Cloud
+Java / J2EE
+Spring MVC
+OCC APIs
+REST Web Services
+Backoffice / HAC
+Data Modelling
+Impex
+CronJobs
+B2B & B2C Commerce
+Third-party Integration
+Oracle
+MySQL
+Tomcat
+Git
+JIRA
+Maven
+IntelliJ
+SAP Commerce Cloud
+Agile / Scrum
+
+SAP Commerce Versions
+Hybris 2211
+Hybris 2205
+Hybris 1905
+
+Professional Experience
+
+Senior SAP Commerce Developer
+Samsung SIEL ShopApp, Nendrasy's
+Feb 2025 - Present
+- Acted as technical point of contact for a 7-member SAP Commerce development team, conducting code reviews, unblocking technical issues, guiding architecture decisions, and ensuring delivery quality.
+- Owned and delivered 2 end-to-end client rollouts currently live in production.
+- Integrated MoEngage with SAP Commerce Cloud 2211 to enable real-time order push notifications.
+- Architected event-based trigger configurations across the complete order lifecycle.
+- Implemented Single Sign-On for secure user authentication across platforms.
+- Developed and enhanced OCC APIs to support mobile application integration.
+- Drove performance optimization and code quality initiatives using Java and SAP Commerce best practices.
+- Collaborated with business analysts and QA teams for production launches and post-go-live support.
+
+SAP Hybris Developer
+Samsung, Iksula
+Apr 2024 - Feb 2025
+- Integrated TBI Payment solutions for the Bulgaria market on Hybris 2211.
+- Architected and integrated Jasper Reports to auto-generate detailed order summaries dispatched by email after successful order placement.
+- Delivered VIP Membership functionality for the UK market, enabling exclusive subscriber discounts.
+
+L3 SAP Hybris Developer
+HPE, Wipro
+2021 - 2024
+- Designed and developed custom Hybris modules and storefront components on Hybris 2205.
+- Owned the Addison Shipment Lead-Time integration end to end.
+- Implemented the Bundles Module for flexible product bundling and upsell mechanics.
+- Delivered OKTA SSO integration for enterprise authentication.
+- Integrated Recommendation API for AI-driven product suggestions.
+- Executed Backoffice customizations, PDP templates, and component enhancements.
+- Participated in technical design discussions, authored functional and technical flow documentation, and delivered KT to developers and support teams.
+- Championed code reviews, performance tuning, and QA alignment.
+
+SAP Hybris Developer
+DENTSPLY Sirona, Capgemini
+2019 - 2021
+- Translated business requirements into technical specifications for a global B2C e-commerce platform on Hybris 1905.
+- Implemented Data Modelling, Impex, CronJobs, Interceptors, Converters, Populators, and OCC Web Services using Java.
+- Drove agile sprint planning, backlog management, and delivery tracking.
+- Authored post-production deployment release notes.
+
+Education
+B.Tech - Information Technology
+
+Certifications
+Claude AI Fundamentals, Anthropic
+
+Key Achievements
+- Acted as technical point of contact for a 7-member team and independently delivered 2 live production rollouts.
+- Delivered SAP Commerce Cloud solutions for Fortune 500 clients including HPE and Samsung.
+- Expanded e-commerce into Bulgaria and UK through payment and membership feature integrations on Hybris 2211.
+- Reduced order notification latency through event-driven MoEngage integration.
+- Mentored and upskilled junior developers through structured KT sessions.
+- Contributed to architectural and technical design decisions with solution architects.
