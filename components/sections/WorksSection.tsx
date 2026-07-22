@@ -11,7 +11,7 @@ export function WorksSection() {
   return (
     <section className="relative px-[clamp(1.5rem,5vw,5rem)] py-[clamp(2rem,10vh,8rem)]" id="works">
       <SectionHeading eyebrow="Professional journey" title="Module experience" />
-      <div className="mx-auto mt-16 grid max-w-[1600px] gap-[clamp(3rem,10vh,7rem)] pb-[35vh]">
+      <div className="mx-auto mt-16 grid max-w-[1600px] gap-[clamp(3rem,10vh,7rem)] pb-[12vh]">
         {works.map((work, index) => (
           <article
             key={work.id}
@@ -78,9 +78,6 @@ export function WorksSection() {
           </article>
         ))}
       </div>
-      <Reveal className="mx-auto mt-16 max-w-2xl text-center text-on-surface-variant">
-        Each card is backed by resume content and avoids unverified claims, private details, and personal imagery.
-      </Reveal>
     </section>
   );
 }

@@ -1,7 +1,10 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { HeroPortraitReveal } from "@/components/sections/HeroPortraitReveal";
+import { metrics } from "@/lib/data/portfolio";
 
 export function Hero() {
+  const totalExperience = metrics.find((metric) => metric.label === "Years total experience");
+
   return (
     <section
       id="top"
@@ -16,6 +19,11 @@ export function Hero() {
             Senior SAP Commerce Cloud Developer using AI-assisted engineering to deliver enterprise
             modules, integrations, production rollouts, and cleaner technical workflows.
           </p>
+          {totalExperience ? (
+            <p className="mt-5 font-label text-label-caps uppercase tracking-[0.24em] text-primary">
+              {totalExperience.value}+ {totalExperience.label}
+            </p>
+          ) : null}
         </Reveal>
         <Reveal className="hidden flex-col items-end gap-4 sm:flex">
           <p className="font-label text-label-caps uppercase tracking-[0.3em] text-primary-container/40">

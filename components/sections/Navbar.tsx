@@ -9,30 +9,63 @@ const navItems = [
   { label: "Systems", href: "#systems" },
   { label: "Proof", href: "#achievements" },
   { label: "Works", href: "#works" },
+  { label: "Rewards", href: "#rewards" },
   { label: "Contact", href: "#contact" }
 ];
 
 export function Navbar() {
-  const [active, setActive] = useState("expertise");
+  const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting);
-        if (visible?.target.id) {
-          setActive(visible.target.id);
+    let frame = 0;
+
+    const updateActiveSection = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const pageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        if (pageBottom) {
+          setActive(navItems.at(-1)?.href.replace("#", "") ?? "");
+          return;
         }
-      },
-      { rootMargin: "-20% 0px -70% 0px", threshold: 0.1 }
-    );
 
-    navItems.forEach((item) => {
-      const section = document.querySelector(item.href);
-      if (section) observer.observe(section);
-    });
+        const sections = navItems
+          .map((item) => document.querySelector<HTMLElement>(item.href))
+          .filter((section): section is HTMLElement => Boolean(section));
 
-    return () => observer.disconnect();
+        const readingLine = window.innerHeight * 0.38;
+        const current = sections.find((section) => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= readingLine && rect.bottom > readingLine;
+        });
+
+        if (current) {
+          setActive(current.id);
+          return;
+        }
+
+        const closest = sections.reduce<HTMLElement | null>((nearest, section) => {
+          if (!nearest) return section;
+          const distance = Math.abs(section.getBoundingClientRect().top - readingLine);
+          const nearestDistance = Math.abs(nearest.getBoundingClientRect().top - readingLine);
+          return distance < nearestDistance ? section : nearest;
+        }, null);
+
+        setActive(closest?.id ?? "");
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("hashchange", updateActiveSection);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+      window.removeEventListener("hashchange", updateActiveSection);
+    };
   }, []);
 
   return (
