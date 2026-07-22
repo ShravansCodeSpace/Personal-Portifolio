@@ -8,6 +8,7 @@ export function HeroPortraitReveal() {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
+  const touchReleaseTimer = useRef<number | null>(null);
   const [titlePosition, setTitlePosition] = useState({ x: 50, y: 50 });
   const [portraitPosition, setPortraitPosition] = useState({ x: 50, y: 50 });
   const [active, setActive] = useState(false);
@@ -24,10 +25,12 @@ export function HeroPortraitReveal() {
   }, []);
 
   useEffect(() => {
-    if (!canHover) {
-      setActive(false);
-      return;
-    }
+    const clearTouchReleaseTimer = () => {
+      if (touchReleaseTimer.current) {
+        window.clearTimeout(touchReleaseTimer.current);
+        touchReleaseTimer.current = null;
+      }
+    };
 
     const pointInRect = (clientX: number, clientY: number, rect: DOMRect) =>
       clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
@@ -44,25 +47,59 @@ export function HeroPortraitReveal() {
 
       if (!heroRect || !titleRect || !portraitRect) return;
 
-      setActive(pointInRect(clientX, clientY, heroRect));
+      const insideHero = pointInRect(clientX, clientY, heroRect);
+      setActive(insideHero);
       setTitlePosition(toPercent(clientX, clientY, titleRect));
       setPortraitPosition(toPercent(clientX, clientY, portraitRect));
     };
 
-    const handlePointerMove = (event: PointerEvent) => updateFromPoint(event.clientX, event.clientY);
-    const handleMouseMove = (event: MouseEvent) => updateFromPoint(event.clientX, event.clientY);
-    const handleLeave = () => setActive(false);
+    const handlePointerMove = (event: PointerEvent) => {
+      if (canHover || event.pointerType !== "mouse") {
+        if (event.pointerType !== "mouse") {
+          clearTouchReleaseTimer();
+        }
+        updateFromPoint(event.clientX, event.clientY);
+      }
+    };
+    const handlePointerDown = (event: PointerEvent) => {
+      clearTouchReleaseTimer();
+      updateFromPoint(event.clientX, event.clientY);
+    };
+    const handlePointerUp = (event: PointerEvent) => {
+      if (event.pointerType === "mouse" && canHover) return;
+
+      touchReleaseTimer.current = window.setTimeout(() => {
+        setActive(false);
+        touchReleaseTimer.current = null;
+      }, 1200);
+    };
+    const handleMouseMove = (event: MouseEvent) => {
+      if (canHover) {
+        updateFromPoint(event.clientX, event.clientY);
+      }
+    };
+    const handleLeave = () => {
+      clearTouchReleaseTimer();
+      setActive(false);
+    };
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerdown", handlePointerDown, { passive: true });
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("pointerleave", handleLeave);
+    window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointercancel", handleLeave);
     window.addEventListener("mouseleave", handleLeave);
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerdown", handlePointerDown);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("pointerleave", handleLeave);
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", handleLeave);
       window.removeEventListener("mouseleave", handleLeave);
+      clearTouchReleaseTimer();
     };
   }, [canHover]);
 
@@ -72,7 +109,10 @@ export function HeroPortraitReveal() {
     : "circle(0% at 50% 50%)";
 
   return (
-    <div ref={heroRef} className="isolate absolute inset-0 z-10 flex items-center justify-center px-[clamp(1.5rem,5vw,5rem)] pt-10">
+    <div
+      ref={heroRef}
+      className="isolate absolute inset-0 z-10 flex touch-pan-y items-center justify-center px-[clamp(1.5rem,5vw,5rem)] pt-10"
+    >
       <div
         ref={portraitRef}
         className="pointer-events-none absolute -z-10 aspect-square w-[44vw] min-w-[300px] max-w-[32rem] overflow-hidden shadow-lift"
@@ -105,7 +145,7 @@ export function HeroPortraitReveal() {
         </p>
         <h1
           ref={titleRef}
-          className="relative select-none break-words font-display text-[clamp(4rem,11vw,10rem)] font-extrabold uppercase leading-[0.88]"
+          className="relative select-none break-words font-display text-[clamp(2.75rem,14vw,4.5rem)] font-extrabold uppercase leading-[0.88] sm:text-[clamp(4rem,11vw,10rem)]"
         >
           <span className="gradient-text-hero block grayscale brightness-75">SAP Commerce</span>
           <span aria-hidden className="hero-title-color absolute inset-0 block" style={{ clipPath: titleMask }}>
