@@ -68,6 +68,15 @@ body {
   background: linear-gradient(180deg, var(--secondary-text) 0%, var(--metal-highlight) 100%);
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-title-color {
+  background: linear-gradient(90deg, #7dd3fc 0%, #fcfdff 38%, #ef4444 74%, #f97316 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
@@ -78,6 +87,10 @@ body {
 .glass-panel {
   background: rgb(255 255 255 / 3%);
   border: 1px solid rgb(255 255 255 / 10%);
+}
+
+.journey-card {
+  background: color-mix(in srgb, var(--background) 96%, white 4%);
 }
 
 .marquee-container {

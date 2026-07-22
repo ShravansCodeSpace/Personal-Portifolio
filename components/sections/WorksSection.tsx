@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import heroImage from "@/assets/commerce-cloud-hero.png";
-import { MotionArticle, Reveal, Stagger, revealVariants } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -12,13 +11,15 @@ export function WorksSection() {
   return (
     <section className="relative px-[clamp(1.5rem,5vw,5rem)] py-[clamp(2rem,10vh,8rem)]" id="works">
       <SectionHeading eyebrow="Professional journey" title="Module experience" />
-      <Stagger className="mx-auto mt-16 grid max-w-[1600px] gap-8">
+      <div className="mx-auto mt-16 grid max-w-[1600px] gap-[clamp(3rem,10vh,7rem)] pb-[35vh]">
         {works.map((work, index) => (
-          <MotionArticle
+          <article
             key={work.id}
-            variants={revealVariants}
-            className="overflow-hidden rounded-lg p-6 shadow-rim glass-panel md:p-12"
-            style={{ zIndex: index + 1 }}
+            className="journey-card sticky overflow-hidden rounded-lg p-6 shadow-lift shadow-rim glass-panel md:p-12"
+            style={{
+              top: `calc(5.75rem + ${index * 0.75}rem)`,
+              zIndex: index + 1
+            }}
           >
             <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-start">
               <div>
@@ -60,12 +61,12 @@ export function WorksSection() {
                 className="group relative min-h-72 overflow-hidden rounded-lg bg-surface-container focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
               >
                 <Image
-                  src={heroImage}
+                  src={work.image}
                   alt={work.imageAlt}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 90vw, 42vw"
-                  className="object-cover opacity-30 grayscale transition duration-300 group-hover:scale-[1.02] group-hover:grayscale-0 group-hover:opacity-60"
-                  placeholder="blur"
+                  className="object-cover opacity-75 grayscale transition duration-300 group-hover:scale-[1.02] group-hover:grayscale-0 group-hover:opacity-95"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 <p className="absolute bottom-6 left-6 font-label text-label-caps uppercase tracking-widest text-white/50">
@@ -74,9 +75,9 @@ export function WorksSection() {
                 <ArrowUpRight aria-hidden className="absolute right-6 top-6 h-6 w-6 text-white/50 transition group-hover:text-white" />
               </Link>
             </div>
-          </MotionArticle>
+          </article>
         ))}
-      </Stagger>
+      </div>
       <Reveal className="mx-auto mt-16 max-w-2xl text-center text-on-surface-variant">
         Each card is backed by resume content and avoids unverified claims, private details, and personal imagery.
       </Reveal>

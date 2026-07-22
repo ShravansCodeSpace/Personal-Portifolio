@@ -18,6 +18,8 @@ export interface Work {
   period: string;
   role: string;
   description: string;
+  caseStudySummary: string;
+  image: string;
   imageAlt: string;
   tags: string[];
   outcomes: string[];
@@ -126,6 +128,9 @@ export const works: Work[] = [
     role: "Senior SAP Commerce Developer",
     description:
       "Working as technical point of contact for a 7-member SAP Commerce team on the Samsung SIEL ShopApp project, delivering order lifecycle, mobile app, SSO, notification, and rollout work on SAP Commerce Cloud 2211.",
+    caseStudySummary:
+      "Leading SAP Commerce Cloud 2211 development for Samsung SIEL ShopApp, Samsung's mobile commerce platform. As Technical POC, enhanced SSO authentication, OCC APIs, order lifecycle event triggers, MoEngage notifications, and customer engagement integrations for a smoother mobile shopping experience.",
+    image: "/assets/case-studies/samsung-shopapp.svg",
     imageAlt: "Abstract commerce cloud architecture visualization",
     tags: ["Hybris 2211", "MoEngage", "OCC APIs", "Recommendations"],
     outcomes: [
@@ -143,6 +148,9 @@ export const works: Work[] = [
     role: "SAP Hybris Developer",
     description:
       "Delivered Samsung SAP Commerce features across regional commerce needs, including Bulgaria payment integration, Jasper Reports order summaries, and UK VIP Membership functionality on Hybris 2211.",
+    caseStudySummary:
+      "Worked on Samsung SAP Commerce Hybris 2211 enhancements for regional commerce rollouts across Bulgaria and the UK. Contributed TBI Payments integration, Jasper Reports order summaries, and VIP Membership functionality to support secure transactions, automated communication, and loyalty-driven shopping flows.",
+    image: "/assets/case-studies/samsung-hybris.svg",
     imageAlt: "Dark enterprise commerce interface visualization",
     tags: ["Hybris 2211", "TBI Payments", "Jasper Reports", "VIP Membership"],
     outcomes: [
@@ -160,6 +168,9 @@ export const works: Work[] = [
     role: "L3 SAP Hybris Developer",
     description:
       "Designed and developed custom Hybris 2205 modules and storefront components for HPE commerce properties across B2B and B2C flows.",
+    caseStudySummary:
+      "Developed SAP Hybris 2205 modules and storefront components for HPE's enterprise B2B and B2C commerce platform. Delivered OKTA SSO, Addison Shipment Lead-Time integration, Bundles Module, Recommendation API, Backoffice customizations, PDP templates, and reusable commerce components.",
+    image: "/assets/case-studies/hpe-commerce.svg",
     imageAlt: "Dark enterprise commerce interface visualization",
     tags: ["Hybris 2205", "OKTA SSO", "Bundles Module", "B2B/B2C"],
     outcomes: [
@@ -177,6 +188,9 @@ export const works: Work[] = [
     role: "SAP Hybris Developer",
     description:
       "Implemented core Hybris 1905 modules for the DENTSPLY Sirona global dental equipment B2C commerce platform, translating business requirements into technical specifications and production release notes.",
+    caseStudySummary:
+      "Worked on DENTSPLY Sirona's global dental equipment B2C commerce platform using SAP Hybris 1905. Implemented core platform modules including Data Modelling, Impex, CronJobs, Interceptors, Converters, Populators, OCC Web Services, and release documentation for production readiness.",
+    image: "/assets/case-studies/dentsply-platform.svg",
     imageAlt: "Modular software architecture panel",
     tags: ["Hybris 1905", "Data Modelling", "Impex", "CronJobs"],
     outcomes: [
