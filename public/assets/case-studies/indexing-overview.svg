@@ -1,0 +1,65 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#0C0C0C"/>
+  <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(745 274) rotate(131.2) scale(527 718)">
+    <stop stop-color="#BBCCD7" stop-opacity="0.32"/>
+    <stop offset="0.42" stop-color="#646973" stop-opacity="0.12"/>
+    <stop offset="1" stop-color="#0C0C0C" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#glow)"/>
+  <path d="M0 506C168 424 309 436 457 479C620 526 752 563 922 493C1034 447 1126 419 1200 428" stroke="#BBCCD7" stroke-opacity="0.08" stroke-width="2"/>
+  <path d="M0 178C147 231 301 227 456 171C598 120 717 92 872 152C1019 209 1106 207 1200 176" stroke="#BBCCD7" stroke-opacity="0.08" stroke-width="2"/>
+
+  <g opacity="0.9">
+    <rect x="78" y="94" width="286" height="487" rx="18" fill="#131314" stroke="#43474A"/>
+    <text x="110" y="142" fill="#FCFDFF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">QUERY SHAPES</text>
+    <g fill="#1F2020" stroke="#43474A">
+      <rect x="110" y="184" width="222" height="76" rx="12"/>
+      <rect x="110" y="286" width="222" height="76" rx="12"/>
+      <rect x="110" y="388" width="222" height="76" rx="12"/>
+    </g>
+    <text x="132" y="216" fill="#BBCCD7" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Single record lookup</text>
+    <text x="132" y="239" fill="#8D9194" font-family="Inter, Arial, sans-serif" font-size="13">user + site + type</text>
+    <text x="132" y="318" fill="#BBCCD7" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Scoped lookup</text>
+    <text x="132" y="341" fill="#8D9194" font-family="Inter, Arial, sans-serif" font-size="13">store + user</text>
+    <text x="132" y="420" fill="#BBCCD7" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Batch scan path</text>
+    <text x="132" y="443" fill="#8D9194" font-family="Inter, Arial, sans-serif" font-size="13">type + modified time</text>
+  </g>
+
+  <g>
+    <rect x="455" y="118" width="290" height="439" rx="22" fill="#101112" stroke="#BBCCD7" stroke-opacity="0.55"/>
+    <text x="498" y="168" fill="#FCFDFF" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="800" letter-spacing="4">INDEX REVIEW</text>
+    <circle cx="600" cy="278" r="78" fill="#1F2020" stroke="#BBCCD7" stroke-opacity="0.65"/>
+    <path d="M555 278H645M600 233V323" stroke="#BBCCD7" stroke-width="8" stroke-linecap="round"/>
+    <path d="M528 424H672" stroke="#FCFDFF" stroke-opacity="0.72" stroke-width="3" stroke-linecap="round"/>
+    <path d="M528 456H644" stroke="#FCFDFF" stroke-opacity="0.42" stroke-width="3" stroke-linecap="round"/>
+    <path d="M528 488H622" stroke="#FCFDFF" stroke-opacity="0.26" stroke-width="3" stroke-linecap="round"/>
+    <text x="600" y="382" text-anchor="middle" fill="#8D9194" font-family="Inter, Arial, sans-serif" font-size="13">
+      <tspan x="600" dy="0">access pattern</tspan>
+      <tspan x="600" dy="21">frequency • volume</tspan>
+    </text>
+  </g>
+
+  <g>
+    <rect x="838" y="94" width="284" height="487" rx="18" fill="#131314" stroke="#43474A"/>
+    <text x="872" y="142" fill="#FCFDFF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">DEPLOYMENT</text>
+    <rect x="875" y="190" width="210" height="120" rx="14" fill="#1F2020" stroke="#EF4444" stroke-opacity="0.7"/>
+    <text x="905" y="236" fill="#FCFDFF" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">Unique index risk</text>
+    <text x="905" y="264" fill="#8D9194" font-family="Inter, Arial, sans-serif" font-size="13">legacy NULL values</text>
+    <rect x="875" y="354" width="210" height="120" rx="14" fill="#1F2020" stroke="#BBCCD7" stroke-opacity="0.7"/>
+    <text x="905" y="400" fill="#FCFDFF" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">Reversible fix</text>
+    <text x="905" y="428" fill="#8D9194" font-family="Inter, Arial, sans-serif" font-size="13">plain index + app guard</text>
+  </g>
+
+  <path d="M364 222C413 222 410 222 455 222" stroke="#BBCCD7" stroke-opacity="0.5" stroke-width="3"/>
+  <path d="M364 324C418 324 409 278 455 278" stroke="#BBCCD7" stroke-opacity="0.35" stroke-width="3"/>
+  <path d="M364 426C424 426 407 335 455 335" stroke="#BBCCD7" stroke-opacity="0.28" stroke-width="3"/>
+  <path d="M745 278C787 278 801 250 838 250" stroke="#BBCCD7" stroke-opacity="0.45" stroke-width="3"/>
+  <path d="M745 410C795 410 802 414 838 414" stroke="#BBCCD7" stroke-opacity="0.5" stroke-width="3"/>
+  <circle cx="455" cy="222" r="5" fill="#BBCCD7"/>
+  <circle cx="455" cy="278" r="5" fill="#BBCCD7"/>
+  <circle cx="455" cy="335" r="5" fill="#BBCCD7"/>
+  <circle cx="838" cy="250" r="5" fill="#EF4444"/>
+  <circle cx="838" cy="414" r="5" fill="#BBCCD7"/>
+
+  <text x="78" y="626" fill="#646973" font-family="Inter, Arial, sans-serif" font-size="15" letter-spacing="4">SAP COMMERCE INDEXING • PERFORMANCE DECISIONS • DEPLOYMENT GUARDRAILS</text>
+</svg>
