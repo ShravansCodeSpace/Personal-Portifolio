@@ -85,7 +85,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </div>
         </section>
 
-        <div className="grid gap-12 py-12 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
+        <div className="grid gap-12 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,24rem)] lg:items-start">
           <div className="max-w-3xl space-y-14">
             {study.sections.map((section) => (
               <section key={section.heading} className="scroll-mt-28 border-b border-outline-variant/10 pb-10 last:border-b-0 last:pb-0">
@@ -101,13 +101,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             ))}
           </div>
 
-          <aside className="rounded-lg border border-outline-variant/20 bg-surface-container-low p-6 lg:sticky lg:top-28">
-            <p className="font-label text-label-caps uppercase tracking-[0.2em] text-primary/40">Key takeaways</p>
+          <aside className="rounded-lg border border-outline-variant/20 bg-surface-container-low p-5 sm:p-6 lg:sticky lg:top-28">
+            <p className="font-label text-label-caps uppercase tracking-[0.18em] text-primary/40">Key takeaways</p>
             <ul className="mt-6 space-y-4">
               {study.takeaways.map((takeaway) => (
-                <li key={takeaway} className="flex gap-3 text-sm leading-6 text-on-surface-variant">
+                <li
+                  key={takeaway}
+                  className="grid grid-cols-[1rem_minmax(0,1fr)] gap-3 text-sm leading-6 text-on-surface-variant"
+                >
                   <CheckCircle2 aria-hidden className="mt-1 h-4 w-4 shrink-0 text-primary-container/70" />
-                  <span>{takeaway}</span>
+                  <span className="min-w-0 text-pretty [overflow-wrap:anywhere]">{takeaway}</span>
                 </li>
               ))}
             </ul>

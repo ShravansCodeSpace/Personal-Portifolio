@@ -19,6 +19,87 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    id: "resttemplate-shared-mutation-sso-4xx",
+    title: "When 4xx Was Not Just Bad Input",
+    eyebrow: "SAP Commerce incident analysis",
+    summary:
+      "A public-safe incident note from a production 4xx spike on an SAP Commerce mobile login endpoint. The visible symptom looked like invalid SSO/token requests, but the deeper issue was runtime mutation of a shared Spring RestTemplate message-converter list.",
+    problem:
+      "A high-traffic user-details endpoint started showing increased 4xx responses during mobile app login. Logs pointed at SSO token refresh and user lookup, including message-converter errors, which made the issue look like bad tokens or client-side request failures at first glance.",
+    resolution:
+      "The fix was to stop treating HTTP client converter setup as request-time logic. The safer pattern is to configure converters once during bean creation, use a dedicated SSO RestTemplate with stable converters, or update converter lists defensively by copying, cleaning, synchronizing, and setting the list once.",
+    image: "/assets/case-studies/resttemplate-shared-mutation.svg",
+    imageAlt: "Diagram showing concurrent requests mutating a shared RestTemplate converter list",
+    tags: ["SAP Commerce", "Spring", "RestTemplate", "SSO", "OCC", "4xx", "Concurrency", "Architecture"],
+    sections: [
+      {
+        heading: "Incident Context",
+        body: [
+          "The alert came from a mobile app login/user-details endpoint where the 4xx failure rate increased sharply. The first signals pointed to SSO validation and refresh-token flows, so the investigation naturally started with tokens, request payloads, and the login path.",
+          "The important learning was that the endpoint was only where the failure surfaced. The deeper problem lived inside a shared HTTP client configuration object used during SSO communication."
+        ]
+      },
+      {
+        heading: "Misleading Symptom",
+        body: [
+          "The logs included invalid-token style responses such as `invalid_grant`, `AUT_1803`, and failed refresh-token messages. Those are easy to interpret as a pure client or identity-provider problem.",
+          "Another log line changed the direction of the investigation: `'messageConverters' must not contain null elements`. That pointed away from business data and toward the Spring HTTP client setup used by the backend while processing login requests."
+        ]
+      },
+      {
+        heading: "What Was Valid",
+        body: [
+          "Adding an explicit UTF-8 `StringHttpMessageConverter` was not the problem by itself. The SSO user-details call reads the response as `String.class`, then parses that response into the expected user object.",
+          "For that flow, Spring needs a `StringHttpMessageConverter` so response bytes can be decoded into a Java `String` before the parser runs. Explicit UTF-8 can be a valid configuration choice."
+        ]
+      },
+      {
+        heading: "Actual Bug",
+        body: [
+          "The issue was how the converter was added. The code called `getMessageConverters()`, removed the existing string converter, then added a new UTF-8 converter at index zero during request execution.",
+          "`getMessageConverters()` returns the actual mutable list inside the shared Spring singleton `RestTemplate`, not a copy. That means one live request can temporarily change the converter list while another request is trying to use the same client."
+        ]
+      },
+      {
+        heading: "Race Window",
+        body: [
+          "A simplified failure sequence looks like this: Request A gets the shared `RestTemplate`, removes `StringHttpMessageConverter`, Request B starts at the same time and sees the incomplete converter list, Request B's SSO call fails, then Request A adds the UTF-8 converter back.",
+          "Even if Request A eventually restores the converter, Request B can fail during the temporary inconsistent state. Under normal traffic this can look random. Under login spikes it becomes visible as a cluster-level 4xx failure-rate increase."
+        ]
+      },
+      {
+        heading: "Bad Design",
+        body: [
+          "The risky design was mutating `getMessageConverters()` during request execution, repeatedly adding or removing converters on a singleton `RestTemplate`, and blindly adding form converters multiple times.",
+          "That turns stable framework configuration into shared mutable runtime state. In a high-concurrency commerce system, that kind of mutation can leak across unrelated requests."
+        ]
+      },
+      {
+        heading: "Better Design",
+        body: [
+          "HTTP message converters should be configured once during bean creation or startup. If an SSO flow needs a special converter setup, use a dedicated `RestTemplate` for that flow instead of modifying a shared client in the hot request path.",
+          "If defensive converter cleanup is unavoidable, build a new list from a copy, remove nulls, ensure the required converters exist, synchronize the update carefully, and call `setMessageConverters(updated)` once. The goal is to avoid exposing partially mutated state to other threads."
+        ]
+      },
+      {
+        heading: "Final Takeaway",
+        body: [
+          "The bug was not UTF-8. The bug was runtime mutation of a shared HTTP client configuration object.",
+          "Encoding configuration belongs at startup, not in the hot request path. This case reinforced a simple architecture rule: shared infrastructure objects should be stable while user requests are flowing through them."
+        ]
+      }
+    ],
+    takeaways: [
+      "A 4xx spike is not always caused by a bad client request.",
+      "Logs that look like token failures can still be triggered by backend framework configuration issues.",
+      "Spring exposes the live mutable converter list through RestTemplate#getMessageConverters().",
+      "Do not add or remove message converters on a singleton HTTP client during request execution.",
+      "Configure encoding and converter behavior once at startup, or use a dedicated client per integration flow.",
+      "If converter cleanup is required, copy the list, clean it, synchronize carefully, and set the full list once.",
+      "High-concurrency login flows reveal shared mutable state bugs faster than low-volume paths."
+    ]
+  },
+  {
     id: "sap-commerce-indexing-beyond-basics",
     title: "Indexing Beyond the Basics",
     eyebrow: "SAP Commerce performance pattern",
