@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { CaseStudyMedia } from "@/components/case-studies/CaseStudyMedia";
 import { CommentsThread } from "@/components/case-studies/CommentsThread";
 import { Badge } from "@/components/ui/Badge";
 import { caseStudies } from "@/lib/data/caseStudies";
@@ -63,18 +63,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </div>
         </header>
 
-        <div className="relative mt-10 aspect-[16/8] overflow-hidden rounded-lg border border-outline-variant/20 bg-surface-container shadow-lift">
-          <Image
-            src={study.image}
-            alt={study.imageAlt}
-            fill
-            priority
-            unoptimized
-            sizes="(max-width: 1024px) 92vw, 1120px"
-            className="object-cover"
-          />
+        <CaseStudyMedia
+          src={study.image}
+          alt={study.imageAlt}
+          priority
+          sizes="(max-width: 1024px) 92vw, 1120px"
+          className="relative mt-10 aspect-[16/8] overflow-hidden rounded-lg border border-outline-variant/20 bg-surface-container shadow-lift"
+          imageClassName="object-cover"
+        >
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-        </div>
+        </CaseStudyMedia>
 
         <section className="mx-auto grid max-w-5xl gap-5 border-b border-outline-variant/20 py-10 lg:grid-cols-2">
           <div className="rounded-lg border border-outline-variant/20 bg-surface-container-low p-6">

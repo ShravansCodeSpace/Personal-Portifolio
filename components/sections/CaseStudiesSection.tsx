@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Database, ShieldCheck } from "lucide-react";
+import { CaseStudyMedia } from "@/components/case-studies/CaseStudyMedia";
 import { Reveal, Stagger, MotionArticle, revealVariants } from "@/components/motion/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -30,17 +30,15 @@ export function CaseStudiesSection() {
               </div>
               <Database aria-hidden className="mt-2 h-8 w-8 shrink-0 text-primary-container/50" />
             </div>
-            <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-outline-variant/20 bg-background">
-              <Image
-                src={study.image}
-                alt={study.imageAlt}
-                fill
-                unoptimized
-                sizes="(max-width: 1024px) 90vw, 42vw"
-                className="object-cover opacity-90 transition duration-300 group-hover:scale-[1.02]"
-              />
+            <CaseStudyMedia
+              src={study.image}
+              alt={study.imageAlt}
+              sizes="(max-width: 1024px) 90vw, 42vw"
+              className="relative aspect-[16/9] overflow-hidden rounded-lg border border-outline-variant/20 bg-background"
+              imageClassName="object-cover opacity-90 transition duration-300 group-hover:scale-[1.02]"
+            >
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-            </div>
+            </CaseStudyMedia>
             <p className="max-w-3xl text-left text-lg leading-relaxed text-on-surface-variant">{study.summary}</p>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded border border-outline-variant/20 bg-background/40 p-5">

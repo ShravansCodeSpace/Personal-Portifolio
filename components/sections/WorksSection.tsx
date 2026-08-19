@@ -1,16 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { Reveal } from "@/components/motion/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { caseStudies } from "@/lib/data/caseStudies";
 import { works } from "@/lib/data/portfolio";
 
 export function WorksSection() {
-  const featuredCaseStudy = caseStudies[0];
-
   return (
     <section className="relative px-[clamp(1.5rem,5vw,5rem)] py-[clamp(2rem,10vh,8rem)]" id="works">
       <SectionHeading eyebrow="Professional journey" title="Module experience" />
@@ -55,8 +51,8 @@ export function WorksSection() {
                     <Badge key={tag}>{tag}</Badge>
                   ))}
                 </div>
-                <Button href={`/case-studies/${featuredCaseStudy.id}`} variant="ghost">
-                  View case study
+                <Button href="/#case-studies" variant="ghost">
+                  View case studies
                 </Button>
               </div>
               <Link
