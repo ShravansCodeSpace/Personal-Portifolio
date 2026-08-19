@@ -66,6 +66,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         <CaseStudyMedia
           src={study.image}
           alt={study.imageAlt}
+          visual={study.visual}
           priority
           sizes="(max-width: 1024px) 92vw, 1120px"
           className="relative mt-10 aspect-[16/8] overflow-hidden rounded-lg border border-outline-variant/20 bg-surface-container shadow-lift"
