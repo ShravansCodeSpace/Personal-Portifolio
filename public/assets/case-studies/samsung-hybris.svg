@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Samsung Hybris regional commerce visual</title>
+  <desc id="desc">Payment, reporting, and membership modules arranged as premium commerce cards.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09090b"/><stop offset="1" stop-color="#18181b"/></linearGradient>
+    <linearGradient id="gold" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset=".55" stop-color="#f8fafc"/><stop offset="1" stop-color="#06b6d4"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="145" y="155" width="1310" height="590" rx="40" fill="#0f1115" stroke="#3f3f46"/>
+  <g stroke="url(#gold)" stroke-width="3" opacity=".85" filter="url(#glow)">
+    <path d="M420 450h760"/>
+    <path d="M800 300v300"/>
+  </g>
+  <g>
+    <rect x="245" y="250" width="350" height="205" rx="26" fill="#151922" stroke="#f59e0b" stroke-opacity=".45"/>
+    <rect x="625" y="250" width="350" height="205" rx="26" fill="#151922" stroke="#f8fafc" stroke-opacity=".22"/>
+    <rect x="1005" y="250" width="350" height="205" rx="26" fill="#151922" stroke="#06b6d4" stroke-opacity=".45"/>
+    <rect x="425" y="500" width="350" height="150" rx="26" fill="#10151c" stroke="#52525b"/>
+    <rect x="825" y="500" width="350" height="150" rx="26" fill="#10151c" stroke="#52525b"/>
+  </g>
+  <g fill="#f8fafc" font-family="Inter, Arial, sans-serif">
+    <text x="290" y="325" font-size="30" font-weight="800">TBI Payments</text>
+    <text x="670" y="325" font-size="30" font-weight="800">Jasper Reports</text>
+    <text x="1050" y="325" font-size="30" font-weight="800">VIP Membership</text>
+    <text x="470" y="565" font-size="24" font-weight="700">Bulgaria market</text>
+    <text x="870" y="565" font-size="24" font-weight="700">UK loyalty flow</text>
+  </g>
+  <g fill="none" stroke="#71717a" stroke-width="2">
+    <path d="M300 365h230M680 365h230M1060 365h230M480 600h230M880 600h230"/>
+  </g>
+</svg>
