@@ -33,7 +33,6 @@ export function CaseStudiesSection() {
             <CaseStudyMedia
               src={study.image}
               alt={study.imageAlt}
-              visual={study.visual}
               sizes="(max-width: 1024px) 90vw, 42vw"
               className="relative aspect-[16/9] overflow-hidden rounded-lg border border-outline-variant/20 bg-background"
               imageClassName="object-cover opacity-90 transition duration-300 group-hover:scale-[1.02]"

@@ -12,7 +12,6 @@ export interface CaseStudy {
   resolution: string;
   image: string;
   imageAlt: string;
-  visual?: "orika-bytecode-limit";
   tags: string[];
   sections: CaseStudySection[];
   takeaways: string[];
@@ -120,7 +119,6 @@ export const caseStudies: CaseStudy[] = [
       "I traced the failure to the generated OrderData to OrderWsDTO mapper, then recommended keeping common fields in Orika mapping while enriching feature-specific response fields directly on the WS DTO after base mapping.",
     image: "/assets/case-studies/orika-order-mapper-bytecode-limit.gif",
     imageAlt: "Animated explanation of Orika mapper bytecode exceeding the JVM method limit",
-    visual: "orika-bytecode-limit",
     tags: ["SAP Commerce", "OCC", "Java", "Orika", "DTO Mapping", "Startup Failure", "Architecture"],
     sections: [
       {
