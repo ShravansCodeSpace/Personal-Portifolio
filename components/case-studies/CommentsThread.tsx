@@ -24,6 +24,7 @@ export function CommentsThread({ caseStudyId }: CommentsThreadProps) {
   const [context, setContext] = useState("");
   const [message, setMessage] = useState("");
   const [website, setWebsite] = useState("");
+  const [ownerToolsAvailable, setOwnerToolsAvailable] = useState(false);
   const [ownerMode, setOwnerMode] = useState(false);
   const [ownerToken, setOwnerToken] = useState("");
   const [status, setStatus] = useState("");
@@ -38,6 +39,18 @@ export function CommentsThread({ caseStudyId }: CommentsThreadProps) {
       }),
     []
   );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash.replace("#", "");
+    const shouldShowOwnerTools = params.get("owner") === "comments" || hash === "owner-comments";
+
+    setOwnerToolsAvailable(shouldShowOwnerTools);
+    if (!shouldShowOwnerTools) {
+      setOwnerMode(false);
+      setOwnerToken("");
+    }
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -141,24 +154,28 @@ export function CommentsThread({ caseStudyId }: CommentsThreadProps) {
             Public comments are open for developers, architects, and freelancers. Name is optional; thoughtful
             technical feedback is the whole point.
           </p>
-          <button
-            type="button"
-            className="mt-6 font-label text-label-caps uppercase text-primary-container/60 transition hover:text-primary"
-            onClick={() => setOwnerMode((value) => !value)}
-          >
-            Owner delete mode
-          </button>
-          {ownerMode ? (
-            <label className="mt-4 block">
-              <span className="font-label text-label-caps uppercase text-primary/40">Delete token</span>
-              <input
-                className="mt-2 w-full rounded border border-outline-variant/30 bg-background px-4 py-3 text-on-surface outline-none transition focus:border-primary"
-                type="password"
-                value={ownerToken}
-                onChange={(event) => setOwnerToken(event.target.value)}
-                placeholder="Only site owner"
-              />
-            </label>
+          {ownerToolsAvailable ? (
+            <>
+              <button
+                type="button"
+                className="mt-6 font-label text-label-caps uppercase text-primary-container/60 transition hover:text-primary"
+                onClick={() => setOwnerMode((value) => !value)}
+              >
+                Owner delete mode
+              </button>
+              {ownerMode ? (
+                <label className="mt-4 block">
+                  <span className="font-label text-label-caps uppercase text-primary/40">Delete token</span>
+                  <input
+                    className="mt-2 w-full rounded border border-outline-variant/30 bg-background px-4 py-3 text-on-surface outline-none transition focus:border-primary"
+                    type="password"
+                    value={ownerToken}
+                    onChange={(event) => setOwnerToken(event.target.value)}
+                    placeholder="Only site owner"
+                  />
+                </label>
+              ) : null}
+            </>
           ) : null}
         </div>
 
@@ -237,7 +254,7 @@ export function CommentsThread({ caseStudyId }: CommentsThreadProps) {
                       {[comment.context, formatter.format(new Date(comment.createdAt))].filter(Boolean).join(" // ")}
                     </p>
                   </div>
-                  {ownerMode ? (
+                  {ownerToolsAvailable && ownerMode ? (
                     <button
                       type="button"
                       className="rounded border border-outline-variant/30 p-2 text-on-surface-variant transition hover:border-primary hover:text-primary"

@@ -68,8 +68,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           alt={study.imageAlt}
           priority
           sizes="(max-width: 1024px) 92vw, 1120px"
-          className="relative mt-10 aspect-[16/8] overflow-hidden rounded-lg border border-outline-variant/20 bg-surface-container shadow-lift"
-          imageClassName="object-cover"
+          className="relative mt-10 aspect-video overflow-hidden rounded-lg border border-outline-variant/20 bg-surface-container shadow-lift"
+          imageClassName="object-contain"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
         </CaseStudyMedia>

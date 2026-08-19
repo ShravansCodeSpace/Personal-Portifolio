@@ -10,7 +10,7 @@ tags:
   - Orika
   - Performance
   - Architecture
-cover: "../assets/orika-order-mapper-bytecode-limit.gif"
+cover: "../public/assets/case-studies/orika-bytecode-limit.svg"
 ---
 
 # SAP Commerce Performance Series: When Mapping Becomes Too Big
@@ -35,7 +35,7 @@ That was the interesting part.
 
 The feature change itself was not very large. But the existing mapper was already very close to the JVM limit. A few additional mapped fields were enough to push it over.
 
-![Orika mapper bytecode limit](../assets/orika-order-mapper-bytecode-limit.gif)
+![Orika mapper bytecode limit](../public/assets/case-studies/orika-bytecode-limit.svg)
 
 ## What Actually Happened?
 
