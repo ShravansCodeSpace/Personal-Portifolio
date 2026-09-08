@@ -101,7 +101,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "sap-commerce-indexing-beyond-basics",
-    title: "Indexing Beyond the Basics",
+    title: "Database Indexes Beyond the Basics",
     eyebrow: "SAP Commerce performance pattern",
     summary:
       "A public-safe implementation note on a recent SAP Commerce preference feature: the business rule, the indexes I added, where uniqueness is actually required, and why one main preference lookup index did not need `unique=true` for the feature to be correct.",

@@ -40,8 +40,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${kanit.variable} ${inter.variable} ${geistLabel.variable} font-body`}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${kanit.variable} ${inter.variable} ${geistLabel.variable} font-body`} suppressHydrationWarning>
         {children}
       </body>
     </html>
